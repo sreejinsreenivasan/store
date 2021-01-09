@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if items %}
+<div class="mx-16">
+    <section class="text-gray-600 body-font py-4">
+        <div class="container px-5 mx-auto">
+            <div class="flex flex-wrap -m-4 text-center">
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full bg-white">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                        
+                        <h2 class="title-font font-medium text-3xl text-gray-900">{{active}}</h2>
+                        <p class="leading-relaxed">Active Products</p>
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full bg-white">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                        
+                        <h2 class="title-font font-medium text-3xl text-gray-900">{{inactive}}</h2>
+                        <p class="leading-relaxed">Inactive Products</p>
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full bg-white">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                        <p class="leading-relaxed">Average Product Price</p>
+                        <p class="text-xl text-purple-500">Category L1</p>
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full bg-white">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                        <p class="leading-relaxed">Average Product Price</p>
+                        <p class="text-xl text-purple-500">Category L2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="flex flex-col mx-16 my-6">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Item Code
+                </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Item Name
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Category L1
+              </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Category L2
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                UPC
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Parent Code
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                MRP / Price
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Size
+            </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
+              <th scope="col" class="relative px-6 py-3">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+              {% for item in items %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+
+                  <div class="ml-4">
+                    <div class="text-sm font-medium text-gray-900">
+                      {{item.item_code}}
+                    </div>
+                    
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">{{item.item_name}}</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  {{item.category_l1}}
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{item.category_l2}}
+              </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{item.upc}}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{item.parent_code}}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{item.price}}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{item.size}}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{item.is_active}}
+            </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="w-full text-center my-12">No data to show</div>
+{% endif %}
+{% endblock %}
