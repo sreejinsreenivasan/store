@@ -55,13 +55,16 @@ class SearchView(View):
     def post(self, request):
         search_field = request.POST["search-field"]
         item_name = request.POST["name"]
-        if search_field == "children":
-            items = Product.get_children(item_name)
-            context = {"items": items}
-        if search_field == "parent":
-            try:
+        try:
+            if search_field == "children":
+                items = Product.get_children(item_name)
+                context = {"items": items}
+            if search_field == "parent":
                 item = Product.objects.get(item_code=item_name)
                 context = {"items": [item]}
-            except Product.MultipleObjectsReturned:
-                context = {"items": [item[0]]}
+        except Product.DoesNotExist:
+            context = {"items": [item[0]]}
+        except Product.MultipleObjectsReturned:
+            context = {"items": [item[0]]}
+
         return render(request, self.template, context)
