@@ -63,8 +63,8 @@ class SearchView(View):
                 item = Product.objects.get(item_code=item_name)
                 context = {"items": [item]}
         except Product.DoesNotExist:
-            context = {"items": [item[0]]}
+            context = {}
         except Product.MultipleObjectsReturned:
-            context = {"items": [item[0]]}
+            context = {}
 
         return render(request, self.template, context)
